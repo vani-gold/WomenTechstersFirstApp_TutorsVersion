@@ -28,8 +28,31 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToLoginPage() {
-        var intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
+   private fun navigateToLoginPage() {
+        var loginBtn : Button = findViewById(R.id.loginButton)
+        var userName : EditText = findViewById(R.id.username)
+        var password : EditText = findViewById(R.id.password)
+
+        loginBtn.setOnClickListener{
+            val userNameEnter: String = userName.text.toString()
+            val userPwdEnter: String = password.text.toString()
+            var message = "";
+
+            if ((userNameEnter.isEmpty()) && (userPwdEnter.isEmpty())) {
+                var message = "input your Username & password";
+            }else{
+                var intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            }
+            Snackbar
+                .make(
+                    findViewById(R.id.layout2),
+                    message,
+                    Snackbar.LENGTH_LONG
+                )
+                .show()
+        }
     }
+
+}
 }
